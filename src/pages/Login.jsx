@@ -14,27 +14,26 @@ class Login extends Component {
   }
 
   onInputChange = ({ target }) => {
-    const input = target.value; // Utiliza do target DOM para captura do value do elemento
-    this.setState({ name: input }, this.validation); // sentando o valor recbido do target dentro do estado name, em seguida chama a função de validação
+    // Utiliza do target DOM para captura do value do elemento
+    const input = target.value;
+
+    // sentando o valor recbido do target dentro do estado name, em seguida chama a função de validação
+    this.setState({ name: input }, this.validation);
   };
 
   validation = () => {
-    // Toda a logica do if serve para habilitar e desabilitar o botão de entrada, caso o campo esteja preenchido com 3 ou menos caracteres
+    // caso a quantidade de caracteres seja menor que 3 o botão estara desabilidado caso contrario ele habilita o botão.
     const { name } = this.state;
-    if (name.length > 2) {
-      this.setState({ btnDisable: false });
-    } else {
-      this.setState({ btnDisable: true });
-    }
+    this.setState({ btnDisable: name.length <= 2 });
   };
 
   handleClick = (userName) => { // recebe como parametro o valor passado no onClick da tag button que é enviado por estado
-    const { history } = this.props; // Se aproveita da props history
+    const { history } = this.props; // Se aproveita da props history para fazer o redirecionamento da pagina
     this.setState({
-      load: true,
+      load: true, // Altera o valor do load para true enquanto o usuario estiver logando para exibir a tela de carregando
     }, async () => {
-      await createUser({ name: userName });
-      return history.push('/search');
+      await createUser({ name: userName }); // chama a função que salva o nome de usuario dentro da chave name no local storage.
+      return history.push('/search'); // Redireciona para o componente de busca 'search'
     });
   };
 
@@ -42,7 +41,9 @@ class Login extends Component {
     const { name, btnDisable, load } = this.state;
     return (
       <div data-testid="page-login">
-        {load && <h1>Carregando...</h1>}
+        {/* Caso o valor do load seja true será renderidazo o texto de carregando */
+          load && <h1>Carregando...</h1>
+        }
         <form>
           <fieldset>
             <legend>Username</legend>
@@ -50,14 +51,14 @@ class Login extends Component {
               name="name"
               type="text"
               data-testid="login-name-input"
-              value={ name }
-              onChange={ this.onInputChange }
+              value={ name } // renderiza o value a partir do que é digitado e capturado do input
+              onChange={ this.onInputChange } // chama a funão e captura as mudanças pra retornar o value
             />
             <button
               type="button"
               data-testid="login-submit-button"
               disabled={ btnDisable }
-              onClick={ () => this.handleClick(name) }
+              onClick={ () => this.handleClick(name) } // envia aparir do click, o name do estado como parametro.
             >
               Entrar
             </button>
