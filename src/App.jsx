@@ -1,5 +1,9 @@
+// Importações de bibliotexcas
 import React from 'react';
 import { BrowserRouter, Route } from 'react-router-dom';
+// -----------------------------------------
+
+// Importações de componentes
 import Login from './pages/Login';
 import Search from './pages/Search';
 import Album from './pages/Album';
@@ -7,6 +11,7 @@ import Favorite from './pages/Favorites';
 import Profile from './pages/Profile';
 import ProfileEdit from './pages/ProfileEdit';
 import NotFound from './pages/NotFound';
+// -----------------------------------
 
 class App extends React.Component {
   render() {
