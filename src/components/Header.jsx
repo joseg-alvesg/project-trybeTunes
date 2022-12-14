@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-// import { Link } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 import { getUser } from '../services/userAPI';
 
 class Header extends Component {
@@ -27,13 +27,18 @@ class Header extends Component {
             accountName || 'Carregando...'
           }
         </p>
-        {/* <ul>
-          <li><Link to="/search">Search</Link></li>
-          <li><Link to="/album/:id">Album</Link></li>
-          <li><Link to="/favorites">Favorites</Link></li>
-          <li><Link to="/profile">Profile</Link></li>
-          <li><Link to=" /profile/edit">ProfileEdit</Link></li>
-        </ul> */}
+        <ul>
+          {/* Faz a renderização de uma lista com os links para as rotas */}
+          <li>
+            <Link to="/search" data-testid="link-to-search">Search</Link>
+          </li>
+          <li>
+            <Link to="/favorites" data-testid="link-to-favorites">Favorites</Link>
+          </li>
+          <li>
+            <Link to="/profile" data-testid="link-to-profile">Profile</Link>
+          </li>
+        </ul>
       </header>
     );
   }
