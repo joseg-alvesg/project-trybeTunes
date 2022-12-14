@@ -1,6 +1,6 @@
 // Importações de bibliotexcas
 import React from 'react';
-import { BrowserRouter, Route } from 'react-router-dom';
+import { BrowserRouter, Route, Switch } from 'react-router-dom';
 // -----------------------------------------
 
 // Importações de componentes
@@ -18,14 +18,16 @@ class App extends React.Component {
     return (
       <div>
         <BrowserRouter>
-          <Route exact path="/" component={ Login } />
-          <Route path="/search" component={ Search } />
-          <Route path="/album/:id" component={ Album } />
-          <Route path="/favorites" component={ Favorite } />
-          <Route exact path="/profile" component={ Profile } />
-          <Route exact path="/profile/edit" component={ ProfileEdit } />
+          <Switch>
+            <Route exact path="/" component={ Login } />
+            <Route path="/search" component={ Search } />
+            <Route path="/album/:id" component={ Album } />
+            <Route path="/favorites" component={ Favorite } />
+            <Route exact path="/profile" component={ Profile } />
+            <Route exact path="/profile/edit" component={ ProfileEdit } />
 
-          <Route path="*" component={ NotFound } />
+            <Route path="*" component={ NotFound } />
+          </Switch>
         </BrowserRouter>
       </div>
     );

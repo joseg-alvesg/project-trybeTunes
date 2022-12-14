@@ -17,7 +17,7 @@ class Login extends Component {
     // Utiliza do target DOM para captura do value do elemento
     const input = target.value;
 
-    // sentando o valor recbido do target dentro do estado name, em seguida chama a função de validação
+    // setando o valor recbido do target dentro do estado name, em seguida chama a função de validação
     this.setState({ name: input }, this.validation);
   };
 
