@@ -13,6 +13,7 @@ import searchAlbumsAPI from '../services/searchAlbumsAPI';
 const INITIAL_STATE = {
   search: '', // chave do input de busca
   hiddenInput: false, // esconde as tags de input e button
+
 };
 // -----------------------------------------
 
@@ -22,9 +23,9 @@ export default class Search extends Component {
 
     this.state = {
       btnDisable: true, // chave do atributo disabled
-      artists: [], // salva o array com todos os elementos da api
       lastSearch: '', // salva uma copia do nome utilizado na pesquisa para exibir na tela
       apiReturn: false, // para caso o retorno da api falhe retornar uma outra tag
+      artists: [], // salva o array com todos os elementos da api
       ...INITIAL_STATE,
     };
   }
@@ -52,6 +53,7 @@ export default class Search extends Component {
     } else {
       this.setState({ // Caso a requisição ocorra com sucesso
         artists: artistsArray, // o estado recebe um array com todos os albuns retornados da Api
+        apiReturn: false,
         lastSearch: search, // salva uma copia do value para uso posterior renderizando o elemento que contem a pesquisa
         ...INITIAL_STATE });
     }
@@ -91,7 +93,7 @@ export default class Search extends Component {
             {hiddenInput && <Loading />}
             <p>{lastSearch.length > 0 && `Resultado de álbuns de: ${lastSearch}`}</p>
             {artists.map((elem) => (
-              <Card key={ elem.artistId } { ...elem } />
+              <Card key={ elem.collectionId } { ...elem } />
             ))}
           </>
         )}
