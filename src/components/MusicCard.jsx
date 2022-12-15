@@ -1,21 +1,27 @@
+// Importações de bibliotecas -----------------
 import PropTypes from 'prop-types';
 import React, { Component } from 'react';
+// --------------------------------------------
+
+// Importações de funções ---------------------
 import { addSong } from '../services/favoriteSongsAPI';
+// --------------------------------------------
+
+// Importações de componentes -----------------
 import Loading from './Loading';
+// --------------------------------------------
 
 class MusicCard extends Component {
   state = {
-    load: false,
+    load: false, // estado definido para exibir o carregamento
   };
 
-  handleChange = async ({ target: { checked } }) => {
-    this.setState({ load: true }, async () => {
-      const { trackName } = this.props;
+  handleChange = ({ target: { checked } }) => { // captura o valor da checkbox
+    this.setState({ load: checked }, async () => { // define o estado de load sendo true ou igual o valor marcado na checkbox e chama um segundo parametro
+      const { trackName } = this.props; // nome da musica recebido por prop
 
-      if (checked) {
-        await addSong({ trackName });
-        this.setState({ load: false });
-      }
+      if (checked) await addSong({ trackName }); // chama a função que salva no local storage as musicas salvas
+      this.setState({ load: false }); // define o valor de load pra false pra sumir o elemento carregando
     });
   };
 
