@@ -46,15 +46,19 @@ class Album extends Component {
           <h1 data-testid="artist-name">{name}</h1>
           <h2 data-testid="album-name">{albumName}</h2>
         </div>
-        {albumInfos
-          .filter((elem) => elem.trackName !== undefined) // filta todos os objetos do array que não possuem uma informação de musica, para renderizar a penas as musicas daqui pra baixo
-          .map((elem) => (
-            <MusicCard
-              key={ elem.trackId }
-              trackName={ elem.trackName }
-              previewUrl={ elem.previewUrl }
-            />
-          ))}
+        <div>
+          {albumInfos
+            .filter((elem) => elem.trackName !== undefined) // filta todos os objetos do array que não possuem uma informação de musica, para renderizar a penas as musicas daqui pra baixo
+            .map((elem) => (
+              <div key={ elem.trackId }>
+                <MusicCard
+                  trackName={ elem.trackName }
+                  trackId={ elem.trackId }
+                  previewUrl={ elem.previewUrl }
+                />
+              </div>
+            ))}
+        </div>
       </div>
     );
   }
