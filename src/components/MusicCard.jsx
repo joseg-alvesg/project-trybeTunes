@@ -4,7 +4,7 @@ import React, { Component } from 'react';
 // --------------------------------------------
 
 // Importações de funções ---------------------
-import { addSong, getFavoriteSongs } from '../services/favoriteSongsAPI';
+import { addSong, getFavoriteSongs, removeSong } from '../services/favoriteSongsAPI';
 // --------------------------------------------
 
 // Importações de componentes -----------------
@@ -34,6 +34,7 @@ class MusicCard extends Component {
       const { elem } = this.props; // nome da musica recebido por prop
 
       if (checked) await addSong(elem); // chama a função que salva no local storage as musicas salvas
+      if (!checked) await removeSong(elem); // chama a função removeSong sugestivamente remove do local storage o objeto equivalente ao click
       this.setState({ load: false }); // define o valor de load pra false pra sumir o elemento carregando
     });
   };
