@@ -23,28 +23,30 @@ class MusicCard extends Component {
 
   handleFavoriteSong = async () => {
     const requestFavorites = await getFavoriteSongs();
-    const { trackName } = this.props;
-    requestFavorites
-      .forEach((song) => this.setState({ checked: song === trackName }));
+    // console.log(requestFavorites[0].trackName);
+    const { elem: { trackName } } = this.props;
+    const checkedVerify = requestFavorites
+      .some((song) => song.trackName === trackName);
+    this.setState({ checked: checkedVerify });
   };
 
   handleChange = ({ target: { checked } }) => { // captura o valor da checkbox
     this.setState({ load: checked, checked }, async () => { // define o estado de load sendo true ou igual o valor marcado na checkbox e chama um segundo parametro
-      const { trackName } = this.props; // nome da musica recebido por prop
+      const { elem } = this.props; // nome da musica recebido por prop
 
-      if (checked) await addSong(trackName); // chama a função que salva no local storage as musicas salvas
+      if (checked) await addSong(elem); // chama a função que salva no local storage as musicas salvas
       this.setState({ load: false }); // define o valor de load pra false pra sumir o elemento carregando
     });
   };
 
   render() {
-    const { trackName, previewUrl, trackId } = this.props;
+    const { elem } = this.props;
     const { load, checked } = this.state;
     return (
       <div>
         {load && <Loading />}
-        <p>{trackName}</p>
-        <audio data-testid="audio-component" src={ previewUrl } controls>
+        <p>{elem.trackName}</p>
+        <audio data-testid="audio-component" src={ elem.previewUrl } controls>
           <track kind="captions" />
           O seu navegador não suporta o elemento
           {' '}
@@ -54,7 +56,7 @@ class MusicCard extends Component {
         </audio>
         <label htmlFor="checker">
           <input
-            data-testid={ `checkbox-music-${trackId}` }
+            data-testid={ `checkbox-music-${elem.trackId}` }
             id="checker"
             type="checkbox"
             checked={ checked }
@@ -68,9 +70,11 @@ class MusicCard extends Component {
 }
 
 MusicCard.propTypes = {
-  previewUrl: PropTypes.string,
-  trackName: PropTypes.string,
-  trackId: PropTypes.string,
+  elem: PropTypes.shape({
+    previewUrl: PropTypes.string,
+    trackName: PropTypes.string,
+    trackId: PropTypes.string,
+  }),
 }.isRequired;
 
 export default MusicCard;
