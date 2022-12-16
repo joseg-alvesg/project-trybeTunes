@@ -22,12 +22,11 @@ class MusicCard extends Component {
   }
 
   handleFavoriteSong = async () => {
-    const requestFavorites = await getFavoriteSongs();
-    // console.log(requestFavorites[0].trackName);
+    const requestFavorites = await getFavoriteSongs(); // Espera a requisição dos
     const { elem: { trackName } } = this.props;
-    const checkedVerify = requestFavorites
+    const checkedVerify = requestFavorites // salva em uma variavel um boleano para cada musica igual salva
       .some((song) => song.trackName === trackName);
-    this.setState({ checked: checkedVerify });
+    this.setState({ checked: checkedVerify }); // mostra as musicas favoritas já salvas
   };
 
   handleChange = ({ target: { checked } }) => { // captura o valor da checkbox
