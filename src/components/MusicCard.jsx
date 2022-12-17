@@ -30,7 +30,7 @@ class MusicCard extends Component {
   };
 
   handleChange = ({ target: { checked } }) => { // captura o valor da checkbox
-    this.setState({ load: checked, checked }, async () => { // define o estado de load sendo true ou igual o valor marcado na checkbox e chama um segundo parametro
+    this.setState({ load: true, checked }, async () => { // define o estado de load sendo true ou igual o valor marcado na checkbox e chama um segundo parametro
       const { elem } = this.props; // nome da musica recebido por prop
 
       if (checked) await addSong(elem); // chama a função que salva no local storage as musicas salvas
