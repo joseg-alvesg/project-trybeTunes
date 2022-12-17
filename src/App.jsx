@@ -1,4 +1,4 @@
-// Importações de bibliotexcas
+// Importações de bibliotecas
 import React from 'react';
 import { BrowserRouter, Route, Switch } from 'react-router-dom';
 // -----------------------------------------

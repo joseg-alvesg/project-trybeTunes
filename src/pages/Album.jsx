@@ -30,7 +30,6 @@ class Album extends Component {
   handleApi = async () => {
     const { match: { params: { id } } } = this.props; // o Id através das rotas do react router que é enviado através do link na linhas 20 do componente Card.jsx
     const request = await getMusics(id); // aqui é feita a requisição para o eme
-    console.log(request);
     this.setState({ name: request[0].artistName, // captura as informações do nome da banda/artista e do nome do album que foi clicado
       albumName: request[0].collectionName,
       albumInfos: request }); // envia todo o objeto do recebido da api para um array no estado
