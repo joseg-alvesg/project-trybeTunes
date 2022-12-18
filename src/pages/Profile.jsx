@@ -27,12 +27,12 @@ export default class Profile extends Component {
     const { name, email, description, image, load } = this.state;
     return (
       <div data-testid="page-profile">
-        <Header />
         {load && <Loading />}
-        <div>
-          <img src={ image } alt={ name } data-testid="profile-image" />
-          <Link to="/profile/edit"><button type="button">Editar perfil</button></Link>
-        </div>
+        <Header />
+        <button type="button">
+          <Link to="/profile/edit">Editar perfil</Link>
+        </button>
+        <img src={ image } alt={ name } data-testid="profile-image" />
         <ul>
           <li>
             <h4>
