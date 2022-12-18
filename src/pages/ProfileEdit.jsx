@@ -18,22 +18,22 @@ class ProfileEdit extends Component {
     this.requestUserInfos();
   }
 
+  requestUserInfos = async () => {
+    const { name, email, description, image } = await getUser(); // getUser é a função que requisita os dados do usuario
+    this.setState({ name, email, description, image }); // define esses valores no estado para renderização inicial a partir da montagem do componente
+  };
+
   handleChange = ({ target: { value, name } }) => {
-    this.setState({ [name]: value }, this.validation);
+    this.setState({ [name]: value }, this.validation); // recebe o valor dos inputs a partir do name de cada elemento fazendo uma validação a cada digitação
   };
 
   handleClick = () => {
-    const { history } = this.props;
+    const { history } = this.props; // Se aproveita da props recebida pela rota dos elementos para uso posterior
     const { name, description, image, email } = this.state;
     this.setState({ load: true }, async () => {
-      await updateUser({ name, description, image, email });
-      return history.push('/profile');
+      await updateUser({ name, description, image, email }); // Faz a requisição de atualização dos dados do usuario para API
+      return history.push('/profile'); // Redireciona para a pagina profile a partir do historico anterior
     });
-  };
-
-  requestUserInfos = async () => {
-    const { name, email, description, image } = await getUser();
-    this.setState({ name, email, description, image });
   };
 
   validation = () => {
@@ -43,7 +43,7 @@ class ProfileEdit extends Component {
     const validEmail = email.length > 0;
     const validDesc = description.length > 0;
     const validImg = image.length > 0;
-
+    // Define a validação dos campos de digitação
     this.setState({ btnDisable: !(validName && validDesc && validEmail && validImg) });
   };
 
@@ -80,7 +80,7 @@ class ProfileEdit extends Component {
               name="email"
               id="email"
               value={ email }
-              type="text"
+              type="email"
               placeholder="edinaldop@bol.com"
               onChange={ this.handleChange }
             />
