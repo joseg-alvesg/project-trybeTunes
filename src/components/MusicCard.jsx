@@ -11,6 +11,8 @@ import { addSong, getFavoriteSongs, removeSong } from '../services/favoriteSongs
 import Loading from './Loading';
 // --------------------------------------------
 
+import styles from '../styles/musicCard.module.css';
+
 class MusicCard extends Component {
   state = {
     checked: false,
@@ -42,29 +44,34 @@ class MusicCard extends Component {
   render() {
     const { elem, handleFavorites } = this.props;
     const { load, checked } = this.state;
+    if (load) return <Loading />;
     return (
-      <div>
-        {load && <Loading />}
-        <p>{elem.trackName}</p>
-        <audio data-testid="audio-component" src={ elem.previewUrl } controls>
-          <track kind="captions" />
-          O seu navegador não suporta o elemento
-          {' '}
-          {' '}
-          <code>audio</code>
-          .
-        </audio>
-        <label htmlFor={ elem.trackId }>
-          <input
-            data-testid={ `checkbox-music-${elem.trackId}` }
-            id={ elem.trackId }
-            type="checkbox"
-            checked={ checked }
-            onChange={ this.handleChange }
-            onClick={ handleFavorites }
-          />
-          Favorita
-        </label>
+      <div className={ styles.containerMusic }>
+        <div className={ styles.name }>
+          <p>{elem.trackName}</p>
+        </div>
+        <div className={ styles.audio }>
+          <audio src={ elem.previewUrl } controls>
+            <track kind="captions" />
+            O seu navegador não suporta o elemento
+            {' '}
+            {' '}
+            <code>audio</code>
+            .
+          </audio>
+        </div>
+        <div className={ styles.input }>
+          <label htmlFor={ elem.trackId }>
+            <input
+              data-testid={ `checkbox-music-${elem.trackId}` }
+              id={ elem.trackId }
+              type="checkbox"
+              checked={ checked }
+              onChange={ this.handleChange }
+              onClick={ handleFavorites }
+            />
+          </label>
+        </div>
       </div>
     );
   }

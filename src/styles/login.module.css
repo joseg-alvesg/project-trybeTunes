@@ -1,0 +1,50 @@
+.container {
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+}
+
+.form {
+  height: 450px;
+  width: 550px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  border-radius: 20px;
+  background: rgba(255, 255, 255, 1);
+
+}
+
+.form img {
+  margin-bottom: 100px;
+  width: 220px;
+}
+
+.section {
+  margin-bottom: 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+  width: 50%;
+}
+
+.section input {
+  width: 97%;
+  border-radius: 20px;
+  text-align: center;
+}
+
+.form button {
+
+  text-decoration: none;
+  border: none;
+  border-radius: 20px;
+  width: 100%;
+}
+
+.form button:hover:enabled {
+  background-color: rgb(29, 165, 29);
+}

@@ -25,9 +25,11 @@ export default class Profile extends Component {
 
   render() {
     const { name, email, description, image, load } = this.state;
+
+    if (load) <Loading />;
+
     return (
       <div data-testid="page-profile">
-        {load && <Loading />}
         <Header />
         <button type="button">
           <Link to="/profile/edit">Editar perfil</Link>

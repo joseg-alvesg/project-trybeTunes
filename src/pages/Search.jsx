@@ -9,6 +9,8 @@ import Loading from '../components/Loading';
 import searchAlbumsAPI from '../services/searchAlbumsAPI';
 // -----------------------------------------
 
+import styles from '../styles/search.module.css';
+
 // Definição de estado inicial -------------
 const INITIAL_STATE = {
   search: '', // chave do input de busca
@@ -63,40 +65,49 @@ export default class Search extends Component {
     const { search, btnDisable, hiddenInput, lastSearch,
       artists, apiReturn } = this.state;
     return (
-      <div data-testid="page-search">
+      <div data-testid="page-search" className={ styles.searchContainer }>
         <Header />
-        Search
-        <div>
-          <input
-            type="text"
-            data-testid="search-artist-input"
-            name="search"
-            hidden={ hiddenInput }
-            value={ search }
-            onChange={ this.handleChange }
-          />
-          <button
-            type="button"
-            hidden={ hiddenInput }
-            disabled={ btnDisable }
-            data-testid="search-artist-button"
-            onClick={ this.handleClick }
-          >
-            Pesquisar
-          </button>
+        <div className={ styles.renderSearch }>
+          <div className={ styles.searchInputs }>
+            <input
+              type="text"
+              data-testid="search-artist-input"
+              name="search"
+              hidden={ hiddenInput }
+              value={ search }
+              onKeyDown={ (e) => e.key === 'Enter' && this.handleClick() }
+              onChange={ this.handleChange }
+            />
+            <button
+              type="button"
+              hidden={ hiddenInput }
+              disabled={ btnDisable }
+              data-testid="search-artist-button"
+              onClick={ this.handleClick }
+            >
+              Pesquisar
+            </button>
+          </div>
+          <p className={ styles.result }>
+            {lastSearch.length > 0 && `Resultado de álbuns de: ${lastSearch}`}
+          </p>
+          <div className={ styles.apiContainer }>
+            {hiddenInput ? (<Loading />
+            ) : (
+              <div className={ styles.apiReturn }>
+                {apiReturn ? (
+                  <p>Nenhum álbum foi encontrado</p>
+                ) : (
+                  <>
+                    {artists.map((elem) => (
+                      <Card key={ elem.collectionId } { ...elem } />
+                    ))}
+                  </>
+                )}
+              </div>
+            )}
+          </div>
         </div>
-
-        {apiReturn ? (
-          <p>Nenhum álbum foi encontrado</p>
-        ) : (
-          <>
-            {hiddenInput && <Loading />}
-            <p>{lastSearch.length > 0 && `Resultado de álbuns de: ${lastSearch}`}</p>
-            {artists.map((elem) => (
-              <Card key={ elem.collectionId } { ...elem } />
-            ))}
-          </>
-        )}
       </div>
     );
   }

@@ -1,0 +1,47 @@
+.cardContainer {
+  border-radius: 10px;
+}
+
+.cardContainer a {
+  text-decoration: none;
+  color: inherit;
+}
+
+.infos {
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+}
+
+.artist {
+  font-size: 14px;
+  width: 80%;
+  align-self: center;
+}
+
+.album {
+  font-size: 14px;
+  width: 80%;
+  align-self: center;
+}
+
+.datePrice {
+  margin: 0 3px 0 3px;
+  display: flex;
+  justify-content: space-between;
+  font-size: 12px;
+}
+
+
+.icon {
+  color: green;
+}
+
+.cardContainer img {
+  border-radius: 40px 0px 40px 0px;
+}
+
+.cardContainer img:hover {
+  transform: translate(0, -15px) rotate(20deg);
+  filter: hue-rotate(154deg);
+}

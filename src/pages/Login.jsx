@@ -1,6 +1,9 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { createUser } from '../services/userAPI';
+import styles from '../styles/login.module.css';
+import image from '../images/logo.png';
+import Loading from '../components/Loading';
 
 class Login extends Component {
   constructor() {
@@ -27,7 +30,8 @@ class Login extends Component {
     this.setState({ btnDisable: name.length <= 2 });
   };
 
-  handleClick = (userName) => { // recebe como parametro o valor passado no onClick da tag button que é enviado por estado
+  handleClick = (userName, e) => { // recebe como parametro o valor passado no onClick da tag button que é enviado por estado
+    if (e) e.preventDefault();
     const { history } = this.props; // Se aproveita da props history para fazer o redirecionamento da pagina
     this.setState({
       load: true, // Altera o valor do load para true enquanto o usuario estiver logando para exibir a tela de carregando
@@ -39,21 +43,27 @@ class Login extends Component {
 
   render() {
     const { name, btnDisable, load } = this.state;
+
+    if (load) return <Loading />;
+
     return (
-      <div data-testid="page-login">
-        {/* Caso o valor do load seja true será renderidazo o texto de carregando */
-          load && <h1>Carregando...</h1>
-        }
-        <form>
-          <fieldset>
-            <legend>Username</legend>
-            <input
-              name="name"
-              type="text"
-              data-testid="login-name-input"
-              value={ name } // renderiza o value a partir do que é digitado e capturado do input
-              onChange={ this.onInputChange } // chama a funão e captura as mudanças pra retornar o value
-            />
+      <div data-testid="page-login" className={ styles.container }>
+        <form className={ styles.form }>
+          <img src={ image } alt="" />
+          <section className={ styles.section }>
+            <label htmlFor="name" id="name">
+              <input
+                name="name"
+                className="name"
+                id="name"
+                onKeyDown={ (e) => e.key === 'Enter' && this.handleClick(name, e) }
+                type="text"
+                data-testid="login-name-input"
+                placeholder="Seu nome aqui"
+                value={ name } // renderiza o value a partir do que é digitado e capturado do input
+                onChange={ this.onInputChange } // chama a funão e captura as mudanças pra retornar o value
+              />
+            </label>
             <button
               type="button"
               data-testid="login-submit-button"
@@ -62,7 +72,7 @@ class Login extends Component {
             >
               Entrar
             </button>
-          </fieldset>
+          </section>
         </form>
       </div>
     );

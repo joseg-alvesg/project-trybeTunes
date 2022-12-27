@@ -1,11 +1,12 @@
 import PropTypes from 'prop-types';
 import React, { Component } from 'react';
+import { FaDollarSign } from 'react-icons/fa';
 import { Link } from 'react-router-dom';
+import styles from '../styles/card.module.css';
 
 class Card extends Component {
   render() {
     const {
-      // artistID,
       artistName,
       collectionId,
       collectionName,
@@ -14,44 +15,48 @@ class Card extends Component {
       releaseDate,
       trackCount,
     } = this.props;
+    const releaseLength = 10;
+    const icon = <FaDollarSign className={ styles.icon } />;
     return (
-      <div>
+      <div className={ styles.cardContainer }>
         <Link
-          data-testid={ `link-to-album-${collectionId}` }
           to={ `/album/${collectionId}` }
         >
-          <div>
-            <img src={ artworkUrl100 } alt={ collectionName } />
+          <img src={ artworkUrl100 } alt={ collectionName } />
+          <div className={ styles.infos }>
+            <div className={ styles.artist }>
+              <p>
+                Artista:
+                {' '}
+                {artistName}
+              </p>
+            </div>
+            <div className={ styles.album }>
+              <p>
+                Album:
+                {' '}
+                {collectionName}
+              </p>
+              <p>
+                release:
+                {' '}
+                {releaseDate.slice(0, releaseLength)}
+              </p>
+            </div>
+            <div className={ styles.datePrice }>
+              <p className={ styles.tracks }>
+                Faixas:
+                {' '}
+                {trackCount}
+              </p>
+              <span className={ styles.span }>
+                { icon }
+                {' '}
+                { collectionPrice }
+              </span>
+            </div>
           </div>
         </Link>
-        <div>
-          <h1>
-            Artista:
-            {' '}
-            {artistName}
-          </h1>
-          <h3>
-            Album:
-            {' '}
-            {collectionName}
-          </h3>
-          <h4>
-            Faixas:
-            {' '}
-            {trackCount}
-          </h4>
-          <h4>
-            Lançamento:
-            {' '}
-            {releaseDate}
-          </h4>
-          <span>
-            Preço:
-            {' '}
-            {collectionPrice}
-          </span>
-
-        </div>
       </div>
     );
   }

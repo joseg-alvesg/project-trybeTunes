@@ -1,0 +1,77 @@
+.containerMusic {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 600px;
+  margin-left: 40px;
+}
+
+.name {
+  width: 40%;
+  font-size: 16px;
+}
+
+audio::-webkit-media-controls-play-button,
+     audio::-webkit-media-controls-panel {
+     background-color: #fff;
+     color: #fff;
+     }
+
+.audio {
+  display: flex;
+  border-radius: 50px;
+  width: 50%;
+  justify-content: center;
+  align-items: center;
+}
+
+.input {
+  width: 10%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.input > input {
+  cursor: pointer;
+
+}
+
+.input input[type="checkbox"] {
+  height: 15px;
+  width: 15px;
+  background-color: white;
+  position: relative;
+  outline: none;
+  transform: rotate(45deg);
+  -webkit-appearance: none;
+  appearance: none;
+}
+
+.input input[type="checkbox"]:before {
+  position: absolute;
+  content: "";
+  background-color: white;
+  height: 60%;
+  width: 100%;
+  top: -59%;
+  border-radius: 25px 25px 0 0;
+}
+
+.input input[type="checkbox"]:after {
+  position: absolute;
+  content: "";
+  background-color: white;
+  height: 60%;
+  width: 100%;
+  transform: rotate(-90deg);
+  border-radius: 75px 75px 0 0;
+  top: 20%;
+  right: 79%;
+}
+
+.input input[type="checkbox"]:checked,
+.input input:checked[type="checkbox"]:before,
+.input input:checked[type="checkbox"]:after {
+  background-color: red;
+}

@@ -1,0 +1,48 @@
+.searchContainer {
+  display: flex;
+  width: 100%;
+}
+
+.renderSearch {
+  display: flex;
+  flex-direction: column;
+  width: 80%;
+}
+
+.result { 
+  align-self: center;
+  font-size: 20px;
+  margin-top: -10px;
+  color: #EFF3F9;
+}
+
+.searchInputs {
+  text-align: center;
+  height: 20vh ;
+  width: 100%;
+}
+
+.searchInputs input {
+  margin-top: 3.5%;
+  margin-bottom: 15px;
+}
+
+.apiContainer {
+  display: flex;
+  justify-content: center;
+  height: 80vh;
+  width: 100%;
+  background-color: #EFF3F9;
+  overflow: scroll;
+  scrollbar-color: rebeccapurple green;
+}
+
+.apiReturn {
+  margin-top: 20px;
+  width: 96%;
+  text-align: center;
+  display: grid;
+  gap: 20px;
+  grid-template-columns: 1fr 1fr 1fr 1fr;
+  grid-template-rows: 1fr 1fr 1fr 1fr;
+}

@@ -1,0 +1,16 @@
+.container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  height: 100vh;
+}
+
+.loadImg {
+  width: 25%;
+}
+
+.p {
+  font-size: 100%;
+  font-weight: bold;
+}

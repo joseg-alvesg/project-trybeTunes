@@ -3,6 +3,8 @@ import React from 'react';
 import { BrowserRouter, Route, Switch } from 'react-router-dom';
 // -----------------------------------------
 
+import './app.css';
+
 // Importações de componentes
 import Login from './pages/Login';
 import Search from './pages/Search';
@@ -16,18 +18,22 @@ import NotFound from './pages/NotFound';
 class App extends React.Component {
   render() {
     return (
-      <div>
+      <div className="container">
         <BrowserRouter>
-          <Switch>
-            <Route exact path="/" component={ Login } />
-            <Route path="/search" component={ Search } />
-            <Route path="/album/:id" component={ Album } />
-            <Route path="/favorites" component={ Favorite } />
-            <Route exact path="/profile" component={ Profile } />
-            <Route exact path="/profile/edit" component={ ProfileEdit } />
+          <div className="routes">
+            <Switch>
 
-            <Route path="*" component={ NotFound } />
-          </Switch>
+              <Route exact path="/" component={ Login } />
+              <Route path="/search" component={ Search } />
+              <Route path="/album/:id" component={ Album } />
+              <Route path="/favorites" component={ Favorite } />
+              <Route exact path="/profile" component={ Profile } />
+              <Route exact path="/profile/edit" component={ ProfileEdit } />
+
+              <Route path="*" component={ NotFound } />
+
+            </Switch>
+          </div>
         </BrowserRouter>
       </div>
     );

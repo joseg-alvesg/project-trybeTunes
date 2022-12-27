@@ -1,0 +1,14 @@
+* {
+  margin: 0;
+}
+
+.container {
+  /* background: linear-gradient(289.33deg, #00D5E2 -3.32%, #003BE5 72.67%); */
+  background: linear-gradient(152.68deg, #003BE5 9.78%, #00D5E2 48.22%);
+}
+
+.routes {
+  background-image: url('./images/BG\ AZUL.svg');
+  background-size: cover;
+  background-repeat: no-repeat;
+}
