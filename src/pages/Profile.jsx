@@ -1,8 +1,10 @@
 import React, { Component } from 'react';
+import { BiUserCircle } from 'react-icons/bi';
 import { Link } from 'react-router-dom';
 import Header from '../components/Header';
 import Loading from '../components/Loading';
 import { getUser } from '../services/userAPI';
+import styles from '../styles/profile.module.css';
 
 export default class Profile extends Component {
   state = {
@@ -29,32 +31,35 @@ export default class Profile extends Component {
     if (load) <Loading />;
 
     return (
-      <div data-testid="page-profile">
+      <div className={ styles.container }>
         <Header />
-        <button type="button">
-          <Link to="/profile/edit">Editar perfil</Link>
-        </button>
-        <img src={ image } alt={ name } data-testid="profile-image" />
-        <ul>
-          <li>
-            <h4>
-              Nome
-            </h4>
-            <p>{name}</p>
-          </li>
-          <li>
-            <h4>
-              Email
-            </h4>
-            <p>{email}</p>
-          </li>
-          <li>
-            <h4>
-              Descrição
-            </h4>
-            <p>{description}</p>
-          </li>
-        </ul>
+        <div className={ styles.infos }>
+          {image ? <img src={ image } alt={ name } className={ styles.img } />
+            : <BiUserCircle className={ styles.userCircle } />}
+          <ul className={ styles.ul }>
+            <li>
+              <h4>
+                Nome
+              </h4>
+              <p>{name}</p>
+            </li>
+            <li>
+              <h4>
+                E-mail
+              </h4>
+              <p>{email}</p>
+            </li>
+            <li>
+              <h4>
+                Descrição
+              </h4>
+              <p>{description}</p>
+            </li>
+            <button type="button">
+              <Link to="/profile/edit">Editar perfil</Link>
+            </button>
+          </ul>
+        </div>
       </div>
     );
   }

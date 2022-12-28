@@ -1,0 +1,64 @@
+.container {
+  display: flex;
+  height: 100vh;
+  position: relative;
+}
+
+.infos {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  width: 100%;
+}
+
+.ul {
+  background-color: #eff3f9;
+  display: flex;
+  flex-direction: column;
+  font-size: 25px;
+  gap: 30px;
+  height: 100%;
+  margin-top: 25vh;
+}
+
+.ul li {
+  color: #3d495c;
+  list-style: none;
+  margin-left: 22.5%;
+  width: 55%;
+}
+
+.ul li:nth-child( 1 ) {
+  margin-top: 60px;
+}
+
+.ul button {
+  background-color: #003be5;
+  border: none;
+  border-radius: 25px;
+  height: 33px;
+  margin-left: 22.5%;
+  width: 15%;
+}
+
+.ul li p {
+  font-size: 20px;
+}
+
+.ul button a {
+  color: white;
+  font-size: 15px;
+  font-weight: 700;
+  text-decoration: none;
+}
+
+.img, .userCircle {
+  border-radius: 50%;
+  filter: drop-shadow(-9px 8px 4px rgba(0, 0, 0, 0.2));
+  font-size: 200px;
+  left: 20%;
+  position: absolute;
+  top: 7.5%;
+  width: 15%;
+}
+

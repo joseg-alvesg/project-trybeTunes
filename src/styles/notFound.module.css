@@ -1,0 +1,17 @@
+.container {
+  align-items: center;
+  display: flex;
+  height: 100vh;
+  justify-content: center;
+}
+
+.container h1 {
+  color: #003be5;
+  font-size: 180px;
+}
+
+.container p {
+  color: blue;
+  font-size: 30px;
+  width: 22%;
+}

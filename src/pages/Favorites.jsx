@@ -3,6 +3,7 @@ import Header from '../components/Header';
 import Loading from '../components/Loading';
 import MusicCard from '../components/MusicCard';
 import { getFavoriteSongs, removeSong } from '../services/favoriteSongsAPI';
+import styles from '../styles/favorites.module.css';
 
 export default class Favorites extends Component {
   state = {
@@ -36,17 +37,22 @@ export default class Favorites extends Component {
     const { favoriteSongs, load } = this.state;
 
     return (
-      <div data-testid="page-favorites">
+      <div className={ styles.container }>
         <Header />
-        {load ? <Loading /> : favoriteSongs
-          .map((elem) => (
-            <div key={ elem.trackId }>
-              <MusicCard
-                elem={ elem }
-                handleFavorites={ this.handleFavorites }
-              />
-            </div>
-          ))}
+        <div className={ styles.textFav }>
+          <p className={ styles.simpleText }>Musicas favoritas</p>
+          <div className={ styles.favorites }>
+            {load ? <Loading /> : favoriteSongs
+              .map((elem) => (
+                <div key={ elem.trackId }>
+                  <MusicCard
+                    elem={ elem }
+                    handleFavorites={ this.handleFavorites }
+                  />
+                </div>
+              ))}
+          </div>
+        </div>
       </div>
     );
   }

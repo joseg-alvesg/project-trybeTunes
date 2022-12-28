@@ -1,8 +1,11 @@
 import PropTypes from 'prop-types';
 import React, { Component } from 'react';
+import { BiUserCircle, BiErrorCircle } from 'react-icons/bi';
+import { BsFillCheckCircleFill } from 'react-icons/bs';
 import Header from '../components/Header';
 import Loading from '../components/Loading';
 import { getUser, updateUser } from '../services/userAPI';
+import styles from '../styles/profileEdit.module.css';
 
 class ProfileEdit extends Component {
   state = {
@@ -38,72 +41,95 @@ class ProfileEdit extends Component {
 
   validation = () => {
     const { name, email, description, image } = this.state;
+    const regex = /^[a-z0-9.]+@[a-z0-9]+\.[a-z]+\)?$/i;
+    const regexImg = /^https?:\/\/(.+\/)+.+(\.(gif|png|jpg|jpeg|webp|svg|psd|bmp|tif|jfif))$/i;
 
     const validName = name.length > 0;
-    const validEmail = email.length > 0;
+    const validEmail = regex.test(email);
     const validDesc = description.length > 0;
-    const validImg = image.length > 0;
+    const validImg = regexImg.test(image);
     // Define a validação dos campos de digitação
     this.setState({ btnDisable: !(validName && validDesc && validEmail && validImg) });
   };
 
   render() {
     const { name, description, email, image, btnDisable, load } = this.state;
+    const regex = /^[a-z0-9.]+@[a-z0-9]+\.[a-z]+\)?$/i;
+    const regexImg = /^https?:\/\/(.+\/)+.+(\.(gif|png|jpg|jpeg|webp|svg|psd|bmp|tif|jfif))$/i;
     return (
-      <div data-testid="page-profile-edit">
+      <div className={ styles.container }>
         <Header />
-        {load && <Loading />}
-        <div>
-          <img src="s" alt={ name } />
-          <input
-            data-testid="edit-input-image"
-            name="image"
-            id="image"
-            value={ image }
-            type="text"
-            onChange={ this.handleChange }
-          />
-        </div>
-        <div>
-          <input
-            data-testid="edit-input-name"
-            name="name"
-            id="name"
-            value={ name }
-            type="text"
-            placeholder="Edinaldo Pereira"
-            onChange={ this.handleChange }
-          />
-          <h3>
-            <input
-              data-testid="edit-input-email"
-              name="email"
-              id="email"
-              value={ email }
-              type="email"
-              placeholder="edinaldop@bol.com"
-              onChange={ this.handleChange }
-            />
-          </h3>
-          <textarea
-            data-testid="edit-input-description"
-            name="description"
-            value={ description }
-            id="description"
-            cols="30"
-            rows="10"
-            onChange={ this.handleChange }
-          />
+        {load ? (<Loading />
+        ) : (
+          <div className={ styles.inputContainer }>
+            <div className={ styles.inputImage }>
+              {regexImg.test(image) ? <img src={ image } alt={ name } />
+                : <BiUserCircle className={ styles.userCircle } />}
+              <input
+                name="image"
+                id="image"
+                value={ image }
+                placeholder="Insira um link"
+                type="text"
+                onChange={ this.handleChange }
+              />
+              {!regexImg.test(image) ? <BiErrorCircle className={ styles.errorIcon } />
+                : <BsFillCheckCircleFill className={ styles.validIcon } />}
+            </div>
+            <div className={ styles.inputs }>
+              <label htmlFor="name">
+                <h2>Nome</h2>
+                <span>Fique a vontade para usar seu nome social</span>
+                <input
+                  data-testid="edit-input-name"
+                  name="name"
+                  id="name"
+                  value={ name }
+                  type="text"
+                  placeholder="Seu nome"
+                  onChange={ this.handleChange }
+                />
+              </label>
+              <label htmlFor="email">
+                <h2>E-mail</h2>
+                <span>Escola um e-mail que consulte diariamente</span>
+                <input
+                  data-testid="edit-input-email"
+                  name="email"
+                  id="email"
+                  value={ email }
+                  type="email"
+                  placeholder="Seu_email@email.com"
+                  onChange={ this.handleChange }
+                />
+                {!regex.test(email) ? <BiErrorCircle className={ styles.errorIcon } />
+                  : <BsFillCheckCircleFill className={ styles.validIcon } />}
+              </label>
+              <label htmlFor="description">
+                <h2>Descrição</h2>
+                <textarea
+                  data-testid="edit-input-description"
+                  name="description"
+                  value={ description }
+                  id="description"
+                  placeholder="Sobre mim"
+                  cols="50"
+                  rows="7"
+                  onChange={ this.handleChange }
+                />
+              </label>
 
-          <button
-            data-testid="edit-button-save"
-            type="button"
-            disabled={ btnDisable }
-            onClick={ this.handleClick }
-          >
-            Editar perfil
-          </button>
-        </div>
+              <button
+                data-testid="edit-button-save"
+                type="button"
+                disabled={ btnDisable }
+                onClick={ this.handleClick }
+              >
+                Salvar
+              </button>
+            </div>
+          </div>
+        )}
       </div>
     );
   }

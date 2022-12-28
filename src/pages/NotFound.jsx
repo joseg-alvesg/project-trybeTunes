@@ -1,9 +1,13 @@
 import React, { Component } from 'react';
+import styles from '../styles/notFound.module.css';
 
 export default class NotFound extends Component {
   render() {
     return (
-      <div data-testid="page-not-found">NotFound</div>
+      <div className={ styles.container }>
+        <h1>Ops!</h1>
+        <p>A página que você está procurando não foi encontrada.</p>
+      </div>
     );
   }
 }

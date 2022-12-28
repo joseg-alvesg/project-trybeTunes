@@ -1,47 +1,45 @@
 .cardContainer {
   border-radius: 10px;
+  position: relative;
 }
 
 .cardContainer a {
-  text-decoration: none;
   color: inherit;
+  display: flex;
+  flex-direction: column;
+  text-decoration: none;
+}
+
+.infosContainer {
+  height: 100%;
+  position: absolute;
+  width: 100%;
+  z-index: 1;
 }
 
 .infos {
+  align-items: flex-start;
+  background: linear-gradient(152.68deg, #003be5 29.78%, #00d5e2 68.22%);
+  border-radius: 20px;
   display: flex;
   flex-direction: column;
-  gap: 5px;
+  font-weight: 700;
+  height: 90%;
+  justify-content: center;
+  margin: 5%;
 }
 
-.artist {
-  font-size: 14px;
-  width: 80%;
-  align-self: center;
-}
-
-.album {
-  font-size: 14px;
-  width: 80%;
-  align-self: center;
-}
-
-.datePrice {
-  margin: 0 3px 0 3px;
-  display: flex;
-  justify-content: space-between;
-  font-size: 12px;
-}
-
-
-.icon {
-  color: green;
+.infos p {
+  color: white;
 }
 
 .cardContainer img {
-  border-radius: 40px 0px 40px 0px;
+  border-radius: 30px;
+  z-index: 2;
 }
 
-.cardContainer img:hover {
-  transform: translate(0, -15px) rotate(20deg);
-  filter: hue-rotate(154deg);
+.cardContainer:hover img {
+  opacity: 20%;
+  transform: rotateY(-90deg) translate3d(0, 90px, 90px);
+  transition: 0.5s;
 }

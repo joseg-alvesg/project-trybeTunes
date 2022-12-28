@@ -13,19 +13,20 @@ class Header extends Component {
 
     this.state = {
       accountName: undefined, // Define estado padrão como undefined para retornar false padrão
+      accountImage: '',
     };
   }
 
   async componentDidMount() {
-    const { name } = await getUser(); // Faz a requisição para função retornar do local storage o nome de usuario
+    const { name, image } = await getUser(); // Faz a requisição para função retornar do local storage o nome de usuario
 
     // define o nome no estado
-    this.setState({ accountName: name });
+    this.setState({ accountName: name, accountImage: image });
   }
 
   render() {
-    const { accountName } = this.state;
-
+    const { accountName, accountImage } = this.state;
+    console.log(accountImage);
     return (
       <header className={ styles.header }>
         {!accountName ? (<Loading />
@@ -33,7 +34,7 @@ class Header extends Component {
           <div className={ styles.container }>
             <section className={ styles.logo }>
               <Link to="/search">
-                <img src={ logo } alt="logotipo trybe" />
+                <img src={ logo } alt="logotipo trybe" className={ styles.logoImage } />
               </Link>
             </section>
             <ul className={ styles.ul }>
@@ -53,8 +54,10 @@ class Header extends Component {
                 <Link to="/profile" data-testid="link-to-profile">Profile</Link>
               </li>
             </ul>
-            <section>
-              {accountName}
+            <section className={ styles.userInfo }>
+              {accountImage.length < 1 ? <BiUserCircle />
+                : <img src={ accountImage } alt={ accountName } />}
+              <p>{accountName}</p>
             </section>
           </div>
         )}

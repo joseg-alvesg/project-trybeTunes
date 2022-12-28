@@ -74,6 +74,7 @@ export default class Search extends Component {
               data-testid="search-artist-input"
               name="search"
               hidden={ hiddenInput }
+              placeHolder="NOME DO ARTISTA"
               value={ search }
               onKeyDown={ (e) => e.key === 'Enter' && this.handleClick() }
               onChange={ this.handleChange }
@@ -87,10 +88,10 @@ export default class Search extends Component {
             >
               Pesquisar
             </button>
+            <p className={ styles.result }>
+              {lastSearch.length > 0 && `Resultado de álbuns de: ${lastSearch}`}
+            </p>
           </div>
-          <p className={ styles.result }>
-            {lastSearch.length > 0 && `Resultado de álbuns de: ${lastSearch}`}
-          </p>
           <div className={ styles.apiContainer }>
             {hiddenInput ? (<Loading />
             ) : (

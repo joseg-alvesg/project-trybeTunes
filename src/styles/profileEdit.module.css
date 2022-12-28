@@ -1,0 +1,90 @@
+.container {
+  display: flex;
+  height: 100vh;
+}
+
+.inputContainer {
+  background-color: #eff3f9;
+  display: flex;
+  flex-direction: column;
+  margin-top: 25vh;
+  position: relative;
+  width: 100%;
+}
+
+.inputImage {
+  display: flex;
+  flex-direction: column;
+  left: 3.5%;
+  position: absolute;
+  top: -22%;
+}
+
+.inputImage input {
+  align-self: center;
+  background-color: transparent;
+  border: 1px solid #444955;
+  border-radius: 2px;
+  box-sizing: border-box;
+  height: 40px;
+  width: 160px;
+
+}
+
+.inputImage img, .inputImage .userCircle {
+  border-radius: 50%;
+  filter: drop-shadow(-9px 8px 4px rgba(0, 0, 0, 0.2));
+  font-size: 200px;
+  margin-bottom: 20px;
+  width: 200px;
+}
+
+.inputs {
+  border: none;
+  border-style: none;
+  display: flex;
+  flex-direction: column;
+  font-size: 16px;
+  font-weight: 600;
+  gap: 10px;
+  margin-left: 25%;
+  margin-top: 30px;
+  width: 50%;
+}
+
+.inputs span {
+  font-size: 14px;
+}
+
+.inputs input {
+  background-color: #f0f2f5;
+  border: none;
+  border-bottom: 1px solid black;
+  width: 80%;
+}
+
+.inputs textarea {
+  border: none;
+  border-bottom: 1px solid black;
+}
+
+.inputs button {
+  background-color: #003be5;
+  border: none;
+  border-radius: 20px;
+  color: #f0f2f5;
+  height: 30px;
+  width: 30%;
+}
+
+.errorIcon {
+  align-self: center;
+  fill: red;
+  font-size: 18px;
+}
+
+.validIcon {
+  align-self: center;
+  fill: green;
+  font-size: 18px;
+}

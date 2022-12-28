@@ -9,40 +9,59 @@
   width: 80%;
 }
 
-.result { 
+.result {
   align-self: center;
+  color: #eff3f9;
   font-size: 20px;
-  margin-top: -10px;
-  color: #EFF3F9;
 }
 
 .searchInputs {
+  height: 20vh;
   text-align: center;
-  height: 20vh ;
   width: 100%;
 }
 
 .searchInputs input {
-  margin-top: 3.5%;
+  background: rgba(255, 255, 255, 0.5);
+  border: none;
+  border-radius: 25px;
+  height: 25%;
   margin-bottom: 15px;
+  margin-top: 3.5%;
+  text-align: center;
+  width: 35%;
+}
+
+.searchInputs input::placeholder {
+  color: #eff3f9;
+}
+
+.searchInputs button {
+  background: rgba(255, 255, 255, 0.5);
+  border: none;
+  border-radius: 42px;
+  color: #eff3f9;
+  font-size: 12px;
+  height: 25%;
+  margin-left: 10px;
+  width: 15%;
 }
 
 .apiContainer {
+  background-color: #eff3f9;
   display: flex;
-  justify-content: center;
   height: 80vh;
-  width: 100%;
-  background-color: #EFF3F9;
+  justify-content: center;
   overflow: scroll;
   scrollbar-color: rebeccapurple green;
+  width: 100%;
 }
 
 .apiReturn {
-  margin-top: 20px;
-  width: 96%;
-  text-align: center;
   display: grid;
   gap: 20px;
-  grid-template-columns: 1fr 1fr 1fr 1fr;
-  grid-template-rows: 1fr 1fr 1fr 1fr;
+  grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
+  margin-top: 20px;
+  text-align: center;
+  width: 96%;
 }
