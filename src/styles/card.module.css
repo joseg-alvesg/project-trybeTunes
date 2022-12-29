@@ -40,6 +40,6 @@
 
 .cardContainer:hover img {
   opacity: 20%;
-  transform: rotateY(-90deg) translate3d(0, 90px, 90px);
+  transform: rotateY(-90deg) translate3d(0px, -80px, -90px);
   transition: 0.5s;
 }
