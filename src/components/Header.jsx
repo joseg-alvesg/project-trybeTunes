@@ -51,7 +51,7 @@ class Header extends Component {
               </li>
               <li>
                 <BiUserCircle />
-                <Link to="/profile" data-testid="link-to-profile">Profile</Link>
+                <Link to="/profile" data-testid="link-to-profile">Perfil</Link>
               </li>
             </ul>
             <section className={ styles.userInfo }>
