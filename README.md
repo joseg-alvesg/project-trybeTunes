@@ -11,3 +11,19 @@ Não deixe de usar nossas dicas de escrita de README de projetos, e deixe sua cr
 - quais arquivos/pastas foram desenvolvidos por outra pessoa estudante;
 - quais arquivos/pastas foram desenvolvidos pela Trybe.
 -->
+
+# :construction: Projeto trybeTunes :construction:
+
+- [x] Fazer login;
+- [x] Pesquisar por uma banda ou artista;
+- [x] Listar os álbuns disponíveis dessa banda ou artista;
+- [x] Visualizar as músicas de um álbum selecionado;
+- [x] Reproduzir uma prévia das músicas deste álbum;
+- [x] Favoritar e desfavoritar músicas;
+- [x] Ver a lista de músicas favoritas;
+- [x] Ver o perfil da pessoa logada;
+- [x] Editar o perfil da pessoa logada;
+
+## Projeto focado na utilização de rotas do "react-router-dom"
+para exercitar principalmente o desenvolvimento e componentização dos elementos, páginas e estilos toda a lógica de componentização se aproveita de estados e props para realização do dinâmismo das paginas
+Foi utilizada uma a API do <a href="https://itunes.apple.com/search?entity=album&term=${parametro-da-chamada-da-api}&attribute=allArtistTerm">iTunes</a> para pesquisa de abuns e artistas.
